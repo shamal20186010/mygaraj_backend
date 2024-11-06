@@ -1,10 +1,11 @@
-package org.mygaraj.service;
+package org.mygaraj.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.mygaraj.dto.Product;
 import org.mygaraj.entity.ProductEntity;
 import org.mygaraj.reporsitory.ProductReporsitory;
+import org.mygaraj.service.ProductService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     private final ProductReporsitory productReporsitory;
     private final ModelMapper mapper;
