@@ -20,4 +20,9 @@ public class RegisterController {
         registerService.registerUser(user);
     }
 
+    @GetMapping("/login/{username}")
+    public User isLogin(@PathVariable String username){
+        return registerService.isLogin(username);
+    }
+
 }
