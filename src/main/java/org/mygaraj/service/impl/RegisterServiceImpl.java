@@ -6,10 +6,8 @@ import org.mygaraj.dto.User;
 import org.mygaraj.entity.UserEntity;
 import org.mygaraj.reporsitory.RegisterReporsitory;
 import org.mygaraj.service.RegisterService;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
