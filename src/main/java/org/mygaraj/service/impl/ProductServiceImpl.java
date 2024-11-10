@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.mygaraj.dto.Product;
 import org.mygaraj.entity.ProductEntity;
-import org.mygaraj.reporsitory.ProductReporsitory;
+import org.mygaraj.reporsitory.ProductRepository;
 import org.mygaraj.service.ProductService;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +15,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    private final ProductReporsitory productReporsitory;
+    private final ProductRepository productRepository;
     private final ModelMapper mapper;
 
     @Override
     public List<Product> getProduct() {
         List<Product> productArrayList = new ArrayList<>();
-        productReporsitory.findAll().forEach(entity->{
+        productRepository.findAll().forEach(entity->{
             productArrayList.add(mapper.map(entity, Product.class));
         });
         return productArrayList;
@@ -29,23 +29,23 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void addProduct(Product product) {
-        productReporsitory.save(mapper.map(product, ProductEntity.class));
+        productRepository.save(mapper.map(product, ProductEntity.class));
     }
 
     @Override
     public void updateProductById(Product product) {
-        productReporsitory.save(mapper.map(product,ProductEntity.class));
+        productRepository.save(mapper.map(product,ProductEntity.class));
     }
 
     @Override
     public void deleteProductById(Integer id) {
-        productReporsitory.deleteById(id);
+        productRepository.deleteById(id);
     }
 
     @Override
     public Product findById(Integer id) {
 
-        return mapper.map(productReporsitory.findById(id),Product.class);
+        return mapper.map(productRepository.findById(id),Product.class);
     }
 
     @Override

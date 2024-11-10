@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.mygaraj.dto.User;
 import org.mygaraj.entity.UserEntity;
-import org.mygaraj.reporsitory.RegisterReporsitory;
+import org.mygaraj.reporsitory.RegisterRepository;
 import org.mygaraj.service.RegisterService;
 import org.springframework.stereotype.Service;
 
@@ -13,16 +13,16 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class RegisterServiceImpl implements RegisterService {
 
-    private final RegisterReporsitory registerReporsitory;
+    private final RegisterRepository registerRepository;
     private final ModelMapper mapper;
 
     @Override
     public void registerUser(User user) {
-        registerReporsitory.save(mapper.map(user,UserEntity.class));
+        registerRepository.save(mapper.map(user,UserEntity.class));
     }
 
     @Override
     public User isLogin(String username) {
-      return mapper.map(registerReporsitory.findByUsername(username),User.class);
+      return mapper.map(registerRepository.findByUsername(username),User.class);
     }
 }
