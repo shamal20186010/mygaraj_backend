@@ -1,15 +1,22 @@
 package org.mygaraj.service;
 
 import org.mygaraj.dto.Product;
+import org.mygaraj.dto.ProductUpdateRequest;
+import org.mygaraj.entity.ProductEntity;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface ProductService {
     List<Product> getProduct();
 
-    void addProduct(Product product);
+    ProductEntity saveProduct(Product product) throws IOException;
+
+//    void addProduct(Product product);
 
     void updateProductById(Product product);
+
+    void updateQuantities(List<ProductUpdateRequest> updateRequests);
 
     void deleteProductById(Integer id);
 
