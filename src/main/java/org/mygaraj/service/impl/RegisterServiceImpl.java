@@ -18,11 +18,18 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public void registerUser(User user) {
-        registerRepository.save(mapper.map(user,UserEntity.class));
+        if (registerRepository.findByUsername(user.getUsername()).isPresent()) {
+            throw new RuntimeException("Username is already taken");
+        }
+
+        registerRepository.save(mapper.map(user, UserEntity.class));
     }
 
     @Override
     public User isLogin(String username) {
-      return mapper.map(registerRepository.findByUsername(username),User.class);
+        UserEntity userEntity = registerRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return mapper.map(userEntity, User.class);
+
     }
 }

@@ -12,8 +12,6 @@ public interface ProductService {
 
     ProductEntity saveProduct(Product product) throws IOException;
 
-//    void addProduct(Product product);
-
     void updateProductById(Product product);
 
     void updateQuantities(List<ProductUpdateRequest> updateRequests);
@@ -25,4 +23,6 @@ public interface ProductService {
     List<Product> findByName(String name);
 
     List<Product> findByCategory(String category);
+
+    boolean existsById(Integer id);
 }

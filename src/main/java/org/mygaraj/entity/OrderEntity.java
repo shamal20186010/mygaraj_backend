@@ -27,4 +27,7 @@ public class OrderEntity {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<OrderItemEntity> items;
+
+    @Column(name = "user_id") // Added user_id column
+    private Long userId;
 }

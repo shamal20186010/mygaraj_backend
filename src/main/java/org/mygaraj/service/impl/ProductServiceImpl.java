@@ -48,11 +48,6 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(productEntity);
     }
 
-//    @Override
-//    public void addProduct(Product product) {
-//        productRepository.save(mapper.map(product, ProductEntity.class));
-//    }
-
     @Override
     public void updateProductById(Product product) {
         ProductEntity productEntity = productRepository.findById(Math.toIntExact(product.getPrId()))
@@ -98,6 +93,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public boolean existsById(Integer id) {
+        return productRepository.existsById(id);
+    }
+
+    @Override
     public Product findById(Integer id) {
 
         return mapper.map(productRepository.findById(id), Product.class);
@@ -120,4 +120,6 @@ public class ProductServiceImpl implements ProductService {
 //        });
         return null;
     }
+
+
 }

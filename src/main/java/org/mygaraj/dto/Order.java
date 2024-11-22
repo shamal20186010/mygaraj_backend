@@ -17,6 +17,7 @@ public class Order {
     private String customerName;
     private String address;
     private Double totalAmount;
+    private Long userId;
     private List<OrderItem> items;
 
 }

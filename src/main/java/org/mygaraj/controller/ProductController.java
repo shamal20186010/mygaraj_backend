@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.mygaraj.dto.Product;
 import org.mygaraj.dto.ProductUpdateRequest;
 import org.mygaraj.entity.ProductEntity;
+import org.mygaraj.exceptions.ProductNotFoundException;
 import org.mygaraj.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/product")
@@ -102,8 +105,14 @@ public class ProductController {
 
     @DeleteMapping("/delete-product-by-id/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void deleteProduct(@PathVariable Integer id) {
+    public ResponseEntity<Map<String, String>> deleteProduct(@PathVariable Integer id) {
+        if (!productService.existsById(id)) {
+            throw new ProductNotFoundException("Product with ID " + id + " not found.");
+        }
         productService.deleteProductById(id);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Product deleted successfully.");
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
     }
 
     @GetMapping("/search-by-id/{id}")

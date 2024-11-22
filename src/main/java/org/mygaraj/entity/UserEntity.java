@@ -15,7 +15,7 @@ import lombok.ToString;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String name;
     private String address;
     private String username;
